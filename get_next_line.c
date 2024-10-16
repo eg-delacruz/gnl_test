@@ -6,7 +6,7 @@
 /*   By: erde-la- <erde-la-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:13:26 by erde-la-          #+#    #+#             */
-/*   Updated: 2024/10/16 10:58:06 by erde-la-         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:37:21 by erde-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_raw_str(int fd, char *buffer, char *rem_str, ssize_t b_read)
 		tmp = rem_str;
 		rem_str = ft_strjoin(tmp, buffer);
 		if (!rem_str)
-			return (NULL);
+			return (ft_free((void **)&tmp),NULL);
 		ft_free((void **)&tmp);
 		if (ft_strchr(buffer, '\n'))
 			break ;
