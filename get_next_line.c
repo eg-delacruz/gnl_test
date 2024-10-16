@@ -6,7 +6,7 @@
 /*   By: erde-la- <erde-la-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:13:26 by erde-la-          #+#    #+#             */
-/*   Updated: 2024/10/16 10:40:36 by erde-la-         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:58:06 by erde-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*ft_remain_str(char *raw_line, char *old_rem_str)
 	return (rem_str);
 }
 
-static char	*ft_init_check(char *rem_str, int fd, char *buffer)
+static char	*ft_init_check(char *rem_str, int fd)
 {
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (ft_free((void **)&rem_str), NULL);
@@ -98,7 +98,7 @@ static char	*ft_init_check(char *rem_str, int fd, char *buffer)
 	{
 		rem_str = malloc(1);
 		if (!rem_str)
-			return (ft_free((void **)&buffer), NULL);
+			return (NULL);
 		rem_str[0] = '\0';
 	}
 	return (rem_str);
@@ -111,10 +111,10 @@ char	*get_next_line(int fd)
 	static char	*rem_str;
 	ssize_t		b_read;
 
+	rem_str = ft_init_check(rem_str, fd);
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (ft_free((void **)&rem_str), NULL);
-	rem_str = ft_init_check(rem_str, fd, buffer);
 	if (!buffer || rem_str == NULL)
 		return (NULL);
 	b_read = 1;
