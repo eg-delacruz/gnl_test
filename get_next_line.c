@@ -6,7 +6,7 @@
 /*   By: erde-la- <erde-la-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:13:26 by erde-la-          #+#    #+#             */
-/*   Updated: 2024/10/16 11:37:21 by erde-la-         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:31:46 by erde-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_raw_str(int fd, char *buffer, char *rem_str, ssize_t b_read)
 		tmp = rem_str;
 		rem_str = ft_strjoin(tmp, buffer);
 		if (!rem_str)
-			return (ft_free((void **)&tmp),NULL);
+			return (ft_free((void **)&tmp), NULL);
 		ft_free((void **)&tmp);
 		if (ft_strchr(buffer, '\n'))
 			break ;
@@ -115,8 +115,8 @@ char	*get_next_line(int fd)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (ft_free((void **)&rem_str), NULL);
-	if (!buffer || rem_str == NULL)
-		return (NULL);
+	if (rem_str == NULL)
+		return (ft_free((void **)&buffer), NULL);
 	b_read = 1;
 	line = ft_raw_str(fd, buffer, rem_str, b_read);
 	ft_free((void **)&buffer);
