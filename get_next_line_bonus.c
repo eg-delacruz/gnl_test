@@ -119,9 +119,11 @@ char	*get_next_line(int fd)
 		return (ft_free((void **)&buffer), NULL);
 	b_read = 1;
 	line = ft_raw_str(fd, buffer, rem_str[fd], b_read);
+	if (line == NULL)
+		return (ft_free((void **)&buffer), NULL);
 	ft_free((void **)&buffer);
 	if (*line == '\0')
-		return (ft_free((void **)&rem_str[fd]), NULL);
+		return (ft_free((void **)&rem_str[fd]), line = NULL, line);
 	rem_str[fd] = ft_remain_str(line, rem_str[fd]);
 	if (!rem_str[fd])
 		return (NULL);
