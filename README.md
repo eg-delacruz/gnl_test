@@ -1,3 +1,3 @@
 Prueba
 
-![Alt Text](file:///D:/libft_gifs/prueba.gif)
+![Texto alternativo](file:///D:/libft_gifs/prueba.gif)
